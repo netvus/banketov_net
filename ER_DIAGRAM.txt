@@ -1,0 +1,43 @@
+erDiagram
+    USERS ||--o{ APPLICATIONS : creates
+    USERS ||--o{ REVIEWS : writes
+    APPLICATIONS ||--o{ REVIEWS : has
+
+    USERS {
+        int id PK
+        varchar login
+        varchar password
+        varchar fio
+        varchar phone
+        varchar email
+        enum role
+    }
+
+    APPLICATIONS {
+        int id PK
+        int user_id FK
+        varchar hall_type
+        date event_date
+        varchar payment_method
+        enum status
+        timestamp created_at
+    }
+
+    REVIEWS {
+        int id PK
+        int user_id FK
+        int application_id FK
+        text review_text
+        timestamp created_at
+    }
+
+%% hall_type values:
+%% Банкетный зал
+%% Ресторан
+%% Летняя веранда
+%% Закрытая веранда
+
+%% status values:
+%% Новая
+%% Банкет назначен
+%% Банкет завершен
